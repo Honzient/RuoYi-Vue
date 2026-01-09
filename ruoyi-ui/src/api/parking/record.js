@@ -1,44 +1,59 @@
 import request from '@/utils/request'
 
-// 查询车辆进出记录列表
-export function listRecord(query) {
+// ================= 图片识别相关 =================
+
+// 1. 上传并识别图片
+export function recognizeImage(data) {
   return request({
-    url: '/parking/record/list',
+    url: '/parking/recognition/image',
+    method: 'post',
+    data: data,
+    headers: { 'Content-Type': 'multipart/form-data' }
+  })
+}
+
+// 2. 查询图片识别记录列表
+export function listImageLog(query) {
+  return request({
+    url: '/parking/recognition/image/list',
     method: 'get',
     params: query
   })
 }
 
-// 查询车辆进出记录详细
-export function getRecord(recordId) {
+// 3. 删除图片识别记录
+export function delImageLog(id) {
   return request({
-    url: '/parking/record/' + recordId,
-    method: 'get'
+    url: '/parking/recognition/image/' + id,
+    method: 'delete'
   })
 }
 
-// 新增车辆进出记录
-export function addRecord(data) {
+// ================= 视频识别相关 =================
+
+// 4. 上传并识别视频
+export function recognizeVideo(data) {
   return request({
-    url: '/parking/record',
+    url: '/parking/recognition/video',
     method: 'post',
-    data: data
+    data: data,
+    headers: { 'Content-Type': 'multipart/form-data' }
   })
 }
 
-// 修改车辆进出记录
-export function updateRecord(data) {
+// 5. 查询视频识别记录列表
+export function listVideoLog(query) {
   return request({
-    url: '/parking/record',
-    method: 'put',
-    data: data
+    url: '/parking/recognition/video/list',
+    method: 'get',
+    params: query
   })
 }
 
-// 删除车辆进出记录
-export function delRecord(recordId) {
+// 6. 删除视频识别记录
+export function delVideoLog(id) {
   return request({
-    url: '/parking/record/' + recordId,
+    url: '/parking/recognition/video/' + id,
     method: 'delete'
   })
 }
